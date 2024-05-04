@@ -1,0 +1,212 @@
+{
+	"info": {
+		"_postman_id": "8f9383d8-89ca-4ebb-bfc2-471e93915e8f",
+		"name": "Google Fit App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27486855"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"\",\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjJkNjZlZTlkNzdmZjYxZTRjZjllMDgiLCJpYXQiOjE3MTQ3NTQzMzEsImV4cCI6MTcxNDc2NTEzMX0.ngc5S4OnnUMPMlMrNMCGqnkAIvBcnBSVGogRaI_Aow0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/user/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Google Fit",
+			"item": [
+				{
+					"name": "Connect",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjJkNjZlZTlkNzdmZjYxZTRjZjllMDgiLCJpYXQiOjE3MTQ3NTczMzEsImV4cCI6MTcxNDc2ODEzMX0.ve1tBqLgFPkhEFSupX_2vU8qib-mFaV2ZH2N_Jlr2-8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": \"4/0AdLIrYc97HdtrcNV5isHOlLG24WqixTJD-gjUnqRa_dOqA3172tUPnwcojK0RXfE-fS24Q\",\r\n    \"redirectUrl\": \"http://localhost:5500/redirect.html\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/google-fit/connect",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"google-fit",
+								"connect"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjJkNjZlZTlkNzdmZjYxZTRjZjllMDgiLCJpYXQiOjE3MTQ3NTQzMzEsImV4cCI6MTcxNDc2NTEzMX0.ngc5S4OnnUMPMlMrNMCGqnkAIvBcnBSVGogRaI_Aow0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/google-fit/fetch",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"google-fit",
+								"fetch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disconnect",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjJkNjZlZTlkNzdmZjYxZTRjZjllMDgiLCJpYXQiOjE3MTQyNTMzOTIsImV4cCI6MTcxNDI1Njk5Mn0.3igmA6ZDAPjbbgDz0mvW8kv-O9aHBx4IVI_ar96xw2g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/google-fit/disconnect",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"google-fit",
+								"disconnect"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
