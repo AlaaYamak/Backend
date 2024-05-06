@@ -7,8 +7,7 @@ const googleFitRouter = express.Router();
 const {connect, fetch, disconnect} = new GoogleFitController();
 
 googleFitRouter.post('/connect', AuthMiddleware.authenticate, connectValidation, connect);
-googleFitRouter.post('/fetch', AuthMiddleware.authenticate, fetch);
+googleFitRouter.get('/fetch', AuthMiddleware.authenticate, fetch);
 googleFitRouter.delete('/disconnect', AuthMiddleware.authenticate, disconnect);
 
-module.exports= googleFitRouter;
-
+module.exports = googleFitRouter;

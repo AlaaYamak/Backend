@@ -14,6 +14,9 @@ const UserSchema = new Schema({
     type: String, 
     required: true 
   },
+  refreshToken: {
+    type: String,
+  }
 });
 const User = model('User', UserSchema);
 module.exports = User;

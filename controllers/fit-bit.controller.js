@@ -1,32 +1,31 @@
-const GoogleFitOAuth = require('../helpers/GoogleFitOAuth');
-const GoogleFit = require('../models/GoogleFit');
+const FitBitOAuth = require('../helpers/FitBitOAuth');
+const FitBit = require('../models/FitBit');
 
-class GoogleFitController {
-  oAuth = new GoogleFitOAuth();
+class FitBitController {
+  oAuth = new FitBitOAuth();
 
   connect = async (req, res, next) => {
-    /*
-      1) Get Access token from google
-      2) store access token and scopes in the database
-    */
-
     try {
       const {userId} = req.user;
       const {code, redirectUrl} = req.body;
-      const {accessToken, scopes} = await this.oAuth.getAccessToken(code, redirectUrl);
-      const isUserHasAccessToken = await GoogleFit.findOne({user: userId});
+      const {accessToken, refreshToken, fitBitUserId, scopes} = await this.oAuth.getAccessToken(code, redirectUrl);
+      const isUserHasAccessToken = await FitBit.findOne({user: userId});
       if(isUserHasAccessToken) {
         isUserHasAccessToken.accessToken = accessToken;
-        isUserHasAccessToken.scopes = scopes
+        isUserHasAccessToken.scopes = scopes;
+        isUserHasAccessToken.refreshToken = refreshToken;
+        isUserHasAccessToken.fitBitUserId = fitBitUserId;
         await isUserHasAccessToken.save();
       }
       else {
-        const googleFitDocument = new GoogleFit({
+        const FitBitDocument = new FitBit({
           accessToken,
+          refreshToken,
+          fitBitUserId,
           scopes,
           user: userId
         });
-        await googleFitDocument.save();
+        await FitBitDocument.save();
       }
       res.status(200).json({
         state: 'Success',
@@ -40,28 +39,24 @@ class GoogleFitController {
   };
 
   fetch = async (req, res, next) => {
-    /*
-      1) use the access token to retrieve the data from google fit
-    */
-
     try {
       const {userId} = req.user;
-      const isUserHasAccess = await GoogleFit.findOne({
+      const isUserHasAccess = await FitBit.findOne({
         user: userId
       });
   
       if(!isUserHasAccess) {
-        throw new Error('You are not connected to Google Fit');
+        throw new Error('You are not connected to Fit Bit');
       }
-      
       const activates = [];
       for(let i = 0; i < isUserHasAccess.scopes.length; i++) {
-        activates.push(this.oAuth.getData(isUserHasAccess.scopes[i], isUserHasAccess.accessToken));
+        const scopeUrl = `https://api.fitbit.com/1/user/${isUserHasAccess.fitBitUserId}/${isUserHasAccess.scopes[i]}`;
+        activates.push(this.oAuth.getData(scopeUrl, isUserHasAccess.accessToken));
       }
       const result = await Promise.all(activates);
       res.status(200).json({
         state: 'Success',
-        message: 'Your google fit data is retrieved successfully',
+        message: 'Your fit bit data is retrieved successfully',
         data: result
       });
     }
@@ -73,7 +68,7 @@ class GoogleFitController {
   disconnect = async (req, res, next) => {
     try {
       const userId = req.user.userId; 
-      await GoogleFit.deleteOne({user: userId});
+      await FitBit.deleteOne({user: userId});
       res.status(204).json();
     }
     catch(error) {
@@ -82,4 +77,4 @@ class GoogleFitController {
   };
 };
 
-module.exports = GoogleFitController;
+module.exports = FitBitController;

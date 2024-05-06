@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const APIError = require('../../error-handlers/api-error');
 
 class AuthMiddleware {
-	static jwtSecret = process.env.JWT_SECRET;
+	static jwtSecret = process.env.ACCESS_TOKEN_JWT_SECRET;
 
 	static authenticate = (req, res, next) => {
 		try {

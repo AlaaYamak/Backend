@@ -22,6 +22,16 @@ const loginValidation = [
     .notEmpty().withMessage("Password is required"),
 
   ExpressErrorValidator.catchExpressValidatorErrors
-]
+];
 
-module.exports = {signupValidation, loginValidation};
+const refreshTokenValidation = [
+  body('accessToken')
+    .notEmpty().withMessage('Access token is required')
+    .isJWT().withMessage('Invalid access token'),
+
+  body('refreshToken')
+    .notEmpty().withMessage('Refresh token is required')
+    .isJWT().withMessage('Invalid refresh token'),
+];
+
+module.exports = {signupValidation, loginValidation, refreshTokenValidation};
