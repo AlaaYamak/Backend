@@ -7,14 +7,14 @@ class GlobalErrorHandler {
 		if(process.env.NODE_ENV?.toLowerCase() === "development") {
 			res.status(error.statusCode).json({
         state: 'Fail',
-        messages: error.message,
+        messages: error.message instanceof Array ? error.message : [error.message],
         stack: error.stack
       })
 		}
 		else {
       res.status(error.statusCode).json({
         state: 'Fail',
-        messages: error.message,
+        messages: error.message instanceof Array ? error.message : [error.message],
       })
 		}
 	};

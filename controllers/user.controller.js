@@ -16,7 +16,8 @@ class UserController {
 					{
 						_id: user._id,
 						username: user.username,
-						email: user.email
+						email: user.email,
+						refreshToken: user.refreshToken
 					}
 				]
 			});

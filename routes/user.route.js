@@ -7,5 +7,5 @@ const {getProfile} = new UserController();
 
 userRouter.get('/profile', AuthMiddleware.authenticate, getProfile);
 
-module.exports= userRouter;
+module.exports = userRouter;
 

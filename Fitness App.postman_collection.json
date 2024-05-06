@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "8f9383d8-89ca-4ebb-bfc2-471e93915e8f",
-		"name": "Google Fit App",
+		"_postman_id": "0cbc7809-42ff-435b-81fb-5e3df21cbe12",
+		"name": "Fitness App",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "27486855"
 	},
@@ -66,6 +66,35 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Refresh Access Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accessToken\": \"\",\r\n    \"refreshToken\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/auth/refresh-token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"auth",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -80,7 +109,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjJkNjZlZTlkNzdmZjYxZTRjZjllMDgiLCJpYXQiOjE3MTQ3NTQzMzEsImV4cCI6MTcxNDc2NTEzMX0.ngc5S4OnnUMPMlMrNMCGqnkAIvBcnBSVGogRaI_Aow0",
+									"value": "",
 									"type": "string"
 								}
 							]
@@ -115,7 +144,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjJkNjZlZTlkNzdmZjYxZTRjZjllMDgiLCJpYXQiOjE3MTQ3NTczMzEsImV4cCI6MTcxNDc2ODEzMX0.ve1tBqLgFPkhEFSupX_2vU8qib-mFaV2ZH2N_Jlr2-8",
+									"value": "",
 									"type": "string"
 								}
 							]
@@ -124,7 +153,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"code\": \"4/0AdLIrYc97HdtrcNV5isHOlLG24WqixTJD-gjUnqRa_dOqA3172tUPnwcojK0RXfE-fS24Q\",\r\n    \"redirectUrl\": \"http://localhost:5500/redirect.html\"\r\n}",
+							"raw": "{\r\n    \"code\": \"\",\r\n    \"redirectUrl\": \"http://localhost:5500/redirect.html\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -154,12 +183,12 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjJkNjZlZTlkNzdmZjYxZTRjZjllMDgiLCJpYXQiOjE3MTQ3NTQzMzEsImV4cCI6MTcxNDc2NTEzMX0.ngc5S4OnnUMPMlMrNMCGqnkAIvBcnBSVGogRaI_Aow0",
+									"value": "",
 									"type": "string"
 								}
 							]
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"url": {
 							"raw": "http://localhost:4000/google-fit/fetch",
@@ -184,7 +213,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjJkNjZlZTlkNzdmZjYxZTRjZjllMDgiLCJpYXQiOjE3MTQyNTMzOTIsImV4cCI6MTcxNDI1Njk5Mn0.3igmA6ZDAPjbbgDz0mvW8kv-O9aHBx4IVI_ar96xw2g",
+									"value": "",
 									"type": "string"
 								}
 							]
@@ -200,6 +229,110 @@
 							"port": "4000",
 							"path": [
 								"google-fit",
+								"disconnect"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Fit Bit",
+			"item": [
+				{
+					"name": "Connect",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": \"\",\r\n    \"redirectUrl\": \"http://localhost:5500/redirect.html\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/fit-bit/connect",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"fit-bit",
+								"connect"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/fit-bit/fetch",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"fit-bit",
+								"fetch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disconnect",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/fit-bit/disconnect",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"fit-bit",
 								"disconnect"
 							]
 						}

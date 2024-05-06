@@ -13,10 +13,10 @@ async function bootstrap() {
   router(app);
   app.all('*', NotFoundRoutesHandler.catch);
   app.use(GlobalErrorHandler.catch);
-  UnhandledRejectionHandler.catch()
+  UnhandledRejectionHandler.catch();
   await DatabaseConnector.connect();
   await app.listen(port);
   console.log(`App is running at: http://localhost:${port} 🚀`);
-}
+};
 
 bootstrap();
